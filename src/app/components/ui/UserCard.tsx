@@ -1,5 +1,8 @@
 
 
+import Image from 'next/image';
+import { LuUser } from 'react-icons/lu';
+
 const UserCard = ({ user }:{
     user: {
         id: number;
@@ -13,9 +16,9 @@ const UserCard = ({ user }:{
     return (
         <div className="flex items-center justify-between p-4 bg-white rounded-md shadow-md mb-4">
             <div className="flex items-center">
-                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar" className="w-12 h-12 rounded-full mr-4" />
+              <LuUser className="text-4xl text-blue-600 m-2"/>
                 <div>
-                    <h2 className="text-lg font-semibold">{user.name}</h2>
+                    <h2 className="text-[16px] font-semibold">{user.name}</h2>
                     <p className="text-sm text-gray-600">{user.email}</p>
                 </div>
             </div>

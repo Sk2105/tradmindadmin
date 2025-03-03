@@ -1,5 +1,6 @@
 import useProductStore from "@/lib/store/product";
 import useUsersStore from "@/lib/store/user";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 
@@ -64,7 +65,7 @@ const OrderCard = ({ order }: {
     return (
         <div className="flex items-center justify-between p-4 bg-white rounded-md shadow-md mb-4">
             <div className="flex items-center">
-                <img src={`${product?.image}`} alt="Logo" className="w-20 h-20" />
+                <Image src={product?.image || ""} alt="Logo" width={100} height={100} />
                 <div className="ml-4">
                     <h3 className="text-lg font-semibold">Order ID: {order.orderId}</h3>
                     <p className="text-sm text-gray-600">Date: {order.date}</p>

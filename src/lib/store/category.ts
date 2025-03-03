@@ -20,21 +20,21 @@ const dummyCategories: Category[] = [
   {
     id: 1,
     name: "Industrial Sewing",
-    image: "./emboadnary.jpeg",
+    image: "/emboadnary.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
   },
   {
     id: 2,
     name: "Embroidery",
-    image: "./emboadnary.jpeg",
+    image: "/emboadnary.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
   },
   {
     id: 4,
     name: "Overlock",
-    image: "./emboadnary.jpeg",
+    image: "/emboadnary.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
   },
@@ -42,14 +42,14 @@ const dummyCategories: Category[] = [
     id: 5,
 
     name: "Coverstitch",
-    image: "./Packing.jpeg",
+    image: "/Packing.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
   },
   {
     id: 6,
     name: "Packaging Machine",
-    image: "./Packing.jpeg",
+    image: "/Packing.jpeg",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
   },
