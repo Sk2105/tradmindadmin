@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -41,8 +43,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex w-full items-center flex-col justify-center">
       <div className="w-full max-w-md space-y-8 rounded-xl shadow-lg p-6">
-        <div className="text-center">
-          <img src="../logo1.jpg" alt="Logo" className="w-20 h-20 mx-auto" />
+          <Image src="/logo1.jpg" alt="Logo" width={80} height={80} className="mx-auto" />
           <h2 className="text-3xl font-bold">Welcome to Admin</h2>
           <p className="mt-2 text-gray-600">
             Sign in to your account to continue
@@ -89,6 +90,5 @@ export default function LoginPage() {
 
 
       </div>
-    </div>
   );
 }

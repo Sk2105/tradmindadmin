@@ -1,6 +1,3 @@
-
-
-import Image from 'next/image';
 import { LuUser } from 'react-icons/lu';
 
 const UserCard = ({ user }:{
