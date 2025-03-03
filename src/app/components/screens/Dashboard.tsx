@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Toast } from 'primereact/toast';
 import CustomButton from '@/app/components/ui/CustomButton';
 import { AiOutlineStock } from 'react-icons/ai';
 import Image from 'next/image';
 
 export default function Dashboard() {
+
+    const toast = useRef<Toast>(null);
+
+    if (toast.current) {
+        toast.current.show({ severity: 'info', summary: 'Info', detail: 'Message Content' });
+    }
     return (
         <div className="h-full w-full flex flex-col p-4">
+            
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-bold">Dashboard</h1>
                 <CustomButton label="Create New" onClick={() => alert('Button clicked!')} />
@@ -13,6 +21,7 @@ export default function Dashboard() {
 
 
             <div className='grid grid-cols-4 place-content-center gap-4 mt-4 mb-4'>
+            <Toast ref={toast} />
 
                 <VisitorCard />
                 <LastWeekVisitor />

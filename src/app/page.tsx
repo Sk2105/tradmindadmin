@@ -2,7 +2,7 @@
 import { useState } from "react";
 import NavigationBar from "./components/layouts/NavigationBar";
 import Categories from "./components/screens/Categories";
-import { TAB } from "@/lib/Tabs";
+import { TAB } from "@/lib/models/Tabs";
 import Dashboard from "./components/screens/Dashboard";
 import Products from "./components/screens/Products";
 import Orders from "./components/screens/Orders";

@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image';
-import { TAB, tabList } from '@/lib/Tabs';
+import { TAB, tabList } from '@/lib/models/Tabs';
 import TabItem from '@/app/components/ui/TabItem';
 
 
