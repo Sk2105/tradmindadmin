@@ -16,8 +16,9 @@ interface OrderStore {
   orders: Order[];
   setOrders: (orders: Order[]) => void;
   getOrders: () => Promise<Order[]>;
-  getOrderById: (id: string) => Promise<Order | null>;
+  getOrderById: (id: number) => Promise<Order | null>;
   updateOrder: (order: Order) => void;
+  getOrdersByProductId: (id: number) => Promise<Order[]>;
 }
 const dummyOrders: Order[] = [
   {
@@ -128,14 +129,16 @@ const useOrderStore = create<OrderStore>()(
       orders: dummyOrders,
       setOrders: (orders: Order[]) => set({ orders }),
       getOrders: async () => dummyOrders,
-      getOrderById: async (id: string) =>
-        dummyOrders.find((order) => order.orderId === Number(id)) || null,
+      getOrderById: async (id: number) =>
+        dummyOrders.find((order) => order.orderId === id) || null,
       updateOrder: (order: Order) =>
         set({
           orders: dummyOrders.map((o) =>
             o.orderId === order.orderId ? order : o
           ),
         }),
+      getOrdersByProductId: async (id: number) =>
+        dummyOrders.filter((order) => order.productId === id),
     }),
     {
       name: "order-storage",

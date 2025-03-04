@@ -18,6 +18,7 @@ interface EnquiryStore {
   getEnquiryById: (id: string) => Promise<Enquiry | null>;
   updateEnquiry: (enquiry: Enquiry) => void;
   removeEnquiry: (id: number) => void;
+  getEnquiriesByProductId: (id: number) => Promise<Enquiry[]>;
 }
 
 const dummyEnquiries: Enquiry[] = [
@@ -83,6 +84,9 @@ const useEnquiryStore = create<EnquiryStore>()(
         set({
           enquiries: dummyEnquiries.filter((enquiry) => enquiry.id !== id),
         }),
+      getEnquiriesByProductId: async (id: number) =>
+        dummyEnquiries.filter((enquiry) => enquiry.productId === id.toString()),
+      
     }),
     {
       name: "enquiry-storage",

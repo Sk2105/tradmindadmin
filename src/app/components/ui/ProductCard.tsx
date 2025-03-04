@@ -1,19 +1,20 @@
 import Image from 'next/image';
 import useProductStore from '@/lib/store/product';
+import { LuPlus } from 'react-icons/lu';
+import Link from 'next/link';
 
 const FeaturedProducts = ({ searchTerm }: {
     searchTerm: string
 }) => {
     const products = useProductStore((state) => state.products);
 
-
-
-
-
     return (
         <section className="py-12">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div className='w-full h-full grid place-content-center text-8xl border-2 border-blue-600 hover:bg-blue-600/20 bg-blue-600/10 rounded-xl text-blue-600'>
+                        <LuPlus />
+                    </div>
                     {products.length > 0 ? (
                         products.map((product) => {
                             if (!product.title.toLowerCase().includes(searchTerm.toLowerCase())) return null;
@@ -32,9 +33,7 @@ const FeaturedProducts = ({ searchTerm }: {
                                         <p className="text-gray-600 text-sm mb-2">{product.category}</p>
                                         <p className="text-blue-600 font-bold">₹{(product.price / 100).toLocaleString()}</p>
 
-                                        <button className='w-full h-10 bg-blue-600 text-white font-semibold rounded-lg mt-4 hover:bg-blue-700'>
-                                            View Details
-                                        </button>
+                                        <Link href={`/products/${product.id}`} className='w-full h-10 bg-blue-600 text-white font-semibold rounded-lg mt-4 hover:bg-blue-700 flex items-center justify-center'>View Details</Link>
                                     </div>
                                 </div>
                             )

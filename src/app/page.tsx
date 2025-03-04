@@ -7,6 +7,7 @@ import Dashboard from "./components/screens/Dashboard";
 import Products from "./components/screens/Products";
 import Orders from "./components/screens/Orders";
 import Users from "./components/screens/Users";
+import FeedbackPage from "./components/screens/Feeback";
 
 const screens = [
   { label: TAB.Dashboard, component: <Dashboard key={TAB.Dashboard} /> },
@@ -21,6 +22,10 @@ const screens = [
   ,
   {
     label: TAB.Users, component: <Users key={TAB.Users} />
+  }
+  ,
+  {
+    label: TAB.Feedbacks, component: <FeedbackPage key={TAB.Feedbacks} />
   }
 ]
 

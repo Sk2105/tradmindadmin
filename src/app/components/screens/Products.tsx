@@ -10,12 +10,9 @@ export default function Products() {
     }
     return (
         <div className="h-full w-full flex flex-col p-4">
-            <div className="flex justify-between items-center p-2 h-fit  w-full">
+            <div className="grid grid-cols-1 items-center md:grid-cols-2 p-2 h-fit  w-full">
                 <h1 className="text-2xl w-fit h-fit">Products</h1>
                 <SearchBar onSearch={handleSearch} title="Enter Product Title..." />
-                <button className="bg-blue-500 w-fit h-fit text-xs rounded-2xl hover:bg-blue-700 text-white font-bold py-2 px-4">
-                    Add 
-                </button>
             </div>
           <FeaturedProducts searchTerm={searchTerm}  />
         </div>
