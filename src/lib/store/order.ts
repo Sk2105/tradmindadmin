@@ -23,7 +23,7 @@ const dummyOrders: Order[] = [
   {
     orderId: 1,
     date: "2023-01-01",
-    status: "Pending",
+    status: "Delivered",
     totalAmount: 100,
     quantity: 2,
     customerAddress: "123, ABC Street, XYZ City",

@@ -184,16 +184,6 @@ const dummyProducts: Product[] = [
   },
   {
     id: 18,
-    title: "Surface Grinder Machine",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
-    category: "Grinding",
-    image: "/surface-grinder-machine-250x250.jpg",
-    price: 599999,
-    stock: 3,
-  },
-  {
-    id: 18,
     title: "Liquid Packaging Machine",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris.",
