@@ -11,6 +11,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LuPen } from 'react-icons/lu';
+import { MdOutlineDelete } from 'react-icons/md';
 
 type Product = {
   id: number;
@@ -140,17 +141,10 @@ export default function ProductPage() {
               height={300}
               className="w-full h-96 object-fill"
             />
-
-            <button onClick={
-              () => { }
-            } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full justify-center items-center flex focus:outline-none'>
-              <LuPen />
-              <span className='pl-2'>change image</span>
-            </button>
           </div>
           <div className="space-y-6">
             <div className='flex items-center justify-between'>
-              <h1 className="text-3xl font-bold text-gray-900">{product?.title}</h1>
+              <h1 className="text-2xl text-gray-900">{product?.title}</h1>
               <button onClick={
                 () => { }
               } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
@@ -159,7 +153,7 @@ export default function ProductPage() {
             </div>
 
             <div className='flex items-center'>
-              <p className="text-sm text-gray-500">Description</p>
+              <p className="text-[10px] text-gray-500">Description</p>
               <button onClick={
                 () => { }
               } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
@@ -167,13 +161,13 @@ export default function ProductPage() {
               </button>
             </div>
 
-            <p className="text-sm text-gray-500">{product?.description}</p>
-            <div className="space-y-4">
+            <p className="text-sm text-gray-500">{product?.description.substring(0, 200)}...</p>
+            <div className="space-y-2">
               <div className="flex items-center justify-between">
 
                 <div className='flex items-center space-x-4'>
                   <p className="text-3xl font-bold text-orange-600">
-                    ₹{product?.price?.toLocaleString()}
+                    ₹{product?.price.toFixed(2)}
                   </p>
                   <button onClick={
                     () => { }
@@ -186,9 +180,38 @@ export default function ProductPage() {
                 <p className="text-sm text-gray-500">Ex. Factory Price</p>
 
               </div>
+            </div>
+
+            <div className='flex items-center'>
+              <p className="text-sm text-gray-500">Quantity : </p>
+              <p className='text-sm text-gray-600 py-2'>{product?.stock}</p>
+              <button onClick={
+                () => { }
+              } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
+                <LuPen />
+              </button>
 
 
 
+
+
+            </div>
+
+            <div className='grid grid-cols-2 gap-2'>
+              
+            <button onClick={
+              () => { }
+            } className=' text-sm px-2 py-2 hover:bg-green-600/10 border border-green-600 text-green-600 rounded-full justify-center items-center flex focus:outline-none'>
+              <LuPen />
+              <span className='pl-2'>change image</span>
+            </button>
+            
+            <button onClick={
+              () => { }
+            } className=' text-sm px-2 py-2 hover:bg-red-600/10 border border-red-600 text-red-600 rounded-full justify-center items-center flex focus:outline-none'>
+              <MdOutlineDelete />
+              <span className='pl-2'>Delete Product</span>
+            </button>
             </div>
           </div>
         </div>
@@ -207,7 +230,7 @@ export default function ProductPage() {
           </div>
         }
 
-        <div className='w-full'>
+        <div className='w-full p-2'>
           {
             tab === "Orders" && (
               order?.length ? (
@@ -217,7 +240,7 @@ export default function ProductPage() {
             )
           }
 
-          <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2'>
+          <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
 
             {
               tab === "Enquiries" && (
@@ -232,7 +255,7 @@ export default function ProductPage() {
 
 
 
-          <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-2'>
+          <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
 
             {
               tab === "Reviews" && (

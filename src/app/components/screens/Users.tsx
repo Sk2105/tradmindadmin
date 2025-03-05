@@ -12,8 +12,8 @@ export default function Users() {
         setSearchTerm(searchTerm);
     }
     return (
-        <div className='container mx-auto p-4'>
-            <div className="grid grid-cols-1 items-center md:grid-cols-2 w-full p-2">
+        <div className='container mx-auto p-2'>
+            <div className="grid grid-cols-1 items-center md:grid-cols-2 w-full p-1">
                 <h1 className='text-2xl w-fit h-fit'>Users</h1>
                 <SearchBar onSearch={handleSearch} title='Enter User Email...' />
             </div>

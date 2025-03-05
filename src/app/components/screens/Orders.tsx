@@ -25,10 +25,10 @@ const Orders: React.FC = () => {
 
 
     return (
-        <div className='container mx-auto px-4'>
-            <div className='grid grid-cols-1 items-center md:grid-cols-2 w-full p-2'>
+        <div className='container mx-auto p-2'>
+            <div className='grid grid-cols-1 items-center md:grid-cols-2 w-full p-1'>
 
-                <h1 className='text-2xl font-semibold my-4'>Orders</h1>
+                <h1 className='text-2xl w-fit h-fit'>Orders</h1>
 
                 <SearchBar onSearch={(search) => {
                     if (isNaN(parseInt(search))) {
@@ -49,7 +49,7 @@ const Orders: React.FC = () => {
             </div>
             <div className='flex flex-col space-y-4 justify-center'>
                 {orders.map((order) => {
-                    if(searchTerm && searchTerm > 0  && order.orderId !== searchTerm) return null
+                    if (searchTerm && searchTerm > 0 && order.orderId !== searchTerm) return null
 
                     if (terms === 'All Orders') {
                         return (

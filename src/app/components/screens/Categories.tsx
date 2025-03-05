@@ -15,14 +15,14 @@ export default function Categories() {
     setSearchTerm(searchTerm);
   }
   return (
-    <div className="h-full w-full flex flex-col p-4">
-      <div className="grid grid-cols-1 items-center md:grid-cols-2 p-2">
+    <div className="h-full w-full flex flex-col p-2 ">
+      <div className="grid grid-cols-1 items-center md:grid-cols-2 p-1 h-fit  w-full">
         <h1 className="text-2xl ">Categories</h1>
         <SearchBar onSearch={handleSearch} title="Enter Category Name..." />
       </div>
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 lg:grid-cols-4 gap-4 mt-4">
 
-        <div className="w-full h-full cursor-pointer border-2 place-content-center grid text-blue-600 text-8xl border-blue-600 rounded-xl bg-blue-600/10 hover:bg-blue-600/20">
+        <div className="w-full h-full cursor-pointer border-2  place-content-center grid text-blue-600 text-8xl border-blue-600 rounded-xl bg-blue-600/10 hover:bg-blue-600/20">
           <LuPlus />
         </div>
         {Object.values(categories).map((category) => {

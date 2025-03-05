@@ -1,6 +1,7 @@
 import useProductStore from "@/lib/store/product";
 import useUsersStore from "@/lib/store/user";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -74,7 +75,8 @@ const OrderCard = ({ order }: {
             </div>
             <p className={`text-sm p-1 rounded-xl pl-2 pr-2 text-gray-600 ${order.status === "Pending" ? "text-yellow-500 bg-amber-200/20" : order.status === "Cancelled" ? "text-red-500 bg-red-200/20" : "text-green-500 bg-green-200/20"}`}>{order.status}</p>
 
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2  rounded-2xl text-xs ">View Order</button>
+            <Link href={`/order/${order.orderId}`} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2  rounded-2xl text-xs ">View Order</Link>
+
         </div>
     );
 };

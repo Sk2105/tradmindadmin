@@ -14,13 +14,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch,title="Search" }: Search
     };
     
     return (
-        <div className="search-bar flex items-center w-full p-1 md:px-2 md:py-1">
+        <div className="search-bar flex items-center w-full mt-2  md:px-2 md:py-1">
         <input
             type="text"
             placeholder={title}
             value={searchTerm}
             onChange={handleSearch}
-            className='rounded-xl p-2 pl-4 pr-4 w-full text-[16px] bg-gray-400/20 focus:outline-none focus:ring-1 focus:ring-blue-600'
+            className='rounded-xl p-2 w-full text-[16px] bg-gray-400/20 focus:outline-none focus:ring-1 focus:ring-blue-600'
         />
         </div>
     );

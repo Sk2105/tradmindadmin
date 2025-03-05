@@ -9,9 +9,9 @@ const FeaturedProducts = ({ searchTerm }: {
     const products = useProductStore((state) => state.products);
 
     return (
-        <section className="py-12">
+        <section className="py-2">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1  md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-3 md:gap-6">
                     <div className='w-full h-full grid place-content-center text-8xl border-2 border-blue-600 hover:bg-blue-600/20 bg-blue-600/10 rounded-xl text-blue-600'>
                         <LuPlus />
                     </div>
