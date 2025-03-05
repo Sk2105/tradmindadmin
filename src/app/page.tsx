@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavigationBar from "./components/layouts/NavigationBar";
 import Categories from "./components/screens/Categories";
 import { TAB, tabList } from "@/lib/models/Tabs";
@@ -8,7 +8,7 @@ import Products from "./components/screens/Products";
 import Orders from "./components/screens/Orders";
 import Users from "./components/screens/Users";
 import FeedbackPage from "./components/screens/Feedback";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const screens = [
   { label: TAB.Dashboard, component: <Dashboard key={TAB.Dashboard} /> },
@@ -33,23 +33,22 @@ const screens = [
 
 export default function HomePage() {
   const router = useRouter();
-  // const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
   const [currentTab, setCurrentTab] = useState<TAB>(TAB.Dashboard);
 
 
-  // useEffect(() => {
-  //   try {
-  //     const tab = searchParams.get('tab');
-  //     const currentTabValue = tab
-  //       ? tabList.find((t) => t.label === tab)?.value
-  //       : TAB.Dashboard;
-  //     setCurrentTab(currentTabValue || TAB.Dashboard);
-  //   } catch (error) {
-  //     console.log(error);
+  useEffect(() => {
+    try {
+      const tab = searchParams.get('tab');
+      const currentTabValue = tab
+        ? tabList.find((t) => t.label === tab)?.value
+        : TAB.Dashboard;
+      setCurrentTab(currentTabValue || TAB.Dashboard);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [searchParams]);
 
-  //   }
-
-  //}, [searchParams]);
   const handleTabChange = (tab: TAB) => {
     const label = tabList.find((t) => t.value === tab)?.label;
     setCurrentTab(tab);
