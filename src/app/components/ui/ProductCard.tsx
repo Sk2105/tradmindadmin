@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import useProductStore from '@/lib/store/product';
-import { LuPlus } from 'react-icons/lu';
 import Link from 'next/link';
 
 

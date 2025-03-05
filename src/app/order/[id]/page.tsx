@@ -217,7 +217,7 @@ export default function OrderPage() {
 
                 {
                     order?.shippingStatus?.map((status) => (
-                        <div className="text-sm text-gray-600 flex flex-row">
+                        <div key={status?.id} className="text-sm text-gray-600 flex flex-row">
                             <p className="">{status?.date}</p>
                             <p className="ms-4">{status?.status}</p>
                             <p className="ms-4">{status?.message || ""}</p>
