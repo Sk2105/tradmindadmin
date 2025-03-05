@@ -18,6 +18,7 @@ interface ProductStore {
   getProductById: (id: number) => Promise<Product | null>;
   addProduct: (product: Product) => void;
   removeProduct: (id: number) => void;
+  getProductsByCategoryId: (name:string) => Promise<Product[]>;
 }
 const dummyProducts: Product[] = [
   {
@@ -227,6 +228,78 @@ const dummyProducts: Product[] = [
     price: 299999,
     stock: 4,
   },
+  {
+    id: 24,
+    title: "Chapati Making Machine",
+    description: "The Chapati Making Machine is a highly efficient and versatile piece of equipment designed for making chapatis. This machine is ideal for industries such as food processing, where precise and hygienic chapati making is crucial. The Chapati Making Machine features a powerful motor and a precise dough rolling mechanism, ensuring consistent and accurate chapati making. It is equipped with adjustable dough thickness and chapati size settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the chapatis to the desired level of crispiness. The Chapati Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Chapati Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any chapati making operation.",
+    category: "Food Processing",
+    image: "/chapati-making-machine-250x250.jpg",
+    price: 199999,
+    stock: 4,
+  },
+  {
+    id: 25,
+    title: "Papad Making Machine",
+    description: "The Papad Making Machine is a highly efficient and versatile piece of equipment designed for making papads. This machine is ideal for industries such as food processing, where precise and hygienic papad making is crucial. The Papad Making Machine features a powerful motor and a precise dough rolling mechanism, ensuring consistent and accurate papad making. It is equipped with adjustable dough thickness and papad size settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the papads to the desired level of crispiness. The Papad Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Papad Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any papad making operation.",
+    category: "Food Processing",
+    image: "/papad-making-machine-250x250.jpg",
+    price: 149999,
+    stock: 4,
+  },
+  {
+    id: 26,
+    title: "Pickle Making Machine",
+    description: "The Pickle Making Machine is a highly efficient and versatile piece of equipment designed for making pickles. This machine is ideal for industries such as food processing, where precise and hygienic pickle making is crucial. The Pickle Making Machine features a powerful motor and a precise brine mixing mechanism, ensuring consistent and accurate pickle making. It is equipped with adjustable brine strength and pickle size settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the pickles to the desired level of acidity. The Pickle Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Pickle Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any pickle making operation.",
+    category: "Food Processing",
+    image: "/pickle-making-machine-250x250.jpg",
+    price: 199999,
+    stock: 4,
+  },
+  {
+    id: 27,
+    title: "Jam Making Machine",
+    description: "The Jam Making Machine is a highly efficient and versatile piece of equipment designed for making jams. This machine is ideal for industries such as food processing, where precise and hygienic jam making is crucial. The Jam Making Machine features a powerful motor and a precise fruit crushing mechanism, ensuring consistent and accurate jam making. It is equipped with adjustable fruit quantity and jam consistency settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the jam to the desired level of sweetness. The Jam Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Jam Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any jam making operation.",
+    category: "Food Processing",
+    image: "/jam-making-machine-250x250.jpg",
+    price: 149999,
+    stock: 4,
+  },
+  {
+    id: 28,
+    title: "Chutney Making Machine",
+    description: "The Chutney Making Machine is a highly efficient and versatile piece of equipment designed for making chutneys. This machine is ideal for industries such as food processing, where precise and hygienic chutney making is crucial. The Chutney Making Machine features a powerful motor and a precise spice mixing mechanism, ensuring consistent and accurate chutney making. It is equipped with adjustable spice quantity and chutney consistency settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the chutney to the desired level of spiciness. The Chutney Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Chutney Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any chutney making operation.",
+    category: "Food Processing",
+    image: "/chutney-making-machine-250x250.jpg",
+    price: 199999,
+    stock: 4,
+  },
+  {
+    id: 29,
+    title: "Fruit Juice Making Machine",
+    description: "The Fruit Juice Making Machine is a highly efficient and versatile piece of equipment designed for making fruit juices. This machine is ideal for industries such as food processing, where precise and hygienic fruit juice making is crucial. The Fruit Juice Making Machine features a powerful motor and a precise juice extraction mechanism, ensuring consistent and accurate fruit juice making. It is equipped with adjustable juice quantity and flavor settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a cooling system to chill the fruit juice to the desired temperature. The Fruit Juice Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Fruit Juice Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any fruit juice making operation.",
+    category: "Food Processing",
+    image: "/fruit-juice-making-machine-250x250.jpg",
+    price: 199999,
+    stock: 4,
+  },
+  {
+    id: 30,
+    title: "Bread Making Machine",
+    description: "The Bread Making Machine is a highly efficient and versatile piece of equipment designed for making bread. This machine is ideal for industries such as food processing, where precise and hygienic bread making is crucial. The Bread Making Machine features a powerful motor and a precise dough mixing mechanism, ensuring consistent and accurate bread making. It is equipped with adjustable dough quantity and bread shape settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the bread to the desired level of crispiness. The Bread Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Bread Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any bread making operation.",
+    category: "Food Processing",
+    image: "/bread-making-machine-250x250.jpg",
+    price: 149999,
+    stock: 4,
+  },
+  {
+    id: 31,
+    title: "Cake Making Machine",
+    description: "The Cake Making Machine is a highly efficient and versatile piece of equipment designed for making cakes. This machine is ideal for industries such as food processing, where precise and hygienic cake making is crucial. The Cake Making Machine features a powerful motor and a precise batter mixing mechanism, ensuring consistent and accurate cake making. It is equipped with adjustable batter quantity and cake shape settings, allowing for customization based on the specific requirements of the product being produced. The machine also includes a heating system to cook the cake to the desired level of sweetness. The Cake Making Machine is built with a robust frame and high-quality components, ensuring durability and long-term reliability. Its user-friendly interface and easy-to-follow instructions make it accessible for operators of all skill levels. Whether you are working on small-scale production or large-scale manufacturing, the Cake Making Machine delivers exceptional performance and quality. Its compact design allows it to fit seamlessly into any production line, making it a valuable addition to any cake making operation.",
+    category: "Food Processing",
+    image: "/cake-making-machine-250x250.jpg",
+    price: 149999,
+    stock: 4,
+  },
 ];
 
 const useProductStore = create<ProductStore>()(
@@ -248,6 +321,9 @@ const useProductStore = create<ProductStore>()(
         set((state) => ({
           products: state.products.filter((product) => product.id !== id),
         })),
+        getProductsByCategoryId: async (name: string) => {
+          return dummyProducts.filter((product) => product.category === name);
+        }
     }),
     {
       name: "product-storage",

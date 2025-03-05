@@ -9,6 +9,7 @@ import Orders from "./components/screens/Orders";
 import Users from "./components/screens/Users";
 import FeedbackPage from "./components/screens/Feedback";
 import { useRouter, useSearchParams } from "next/navigation";
+import Enquiries from "./components/screens/Enquiries";
 
 const screens = [
   { label: TAB.Dashboard, component: <Dashboard key={TAB.Dashboard} /> },
@@ -27,6 +28,9 @@ const screens = [
   ,
   {
     label: TAB.Feedbacks, component: <FeedbackPage key={TAB.Feedbacks} />
+  },
+  {
+    label: TAB.Enquiries, component: <Enquiries key={TAB.Enquiries} />
   }
 ]
 

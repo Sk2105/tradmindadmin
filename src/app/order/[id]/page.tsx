@@ -8,6 +8,13 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
+type ShippingStatus = {
+    id: number;
+    date: string;
+    status: string;
+    message?: string
+}
+
 type Order = {
     orderId: number;
     date: string;
@@ -17,7 +24,8 @@ type Order = {
     customerAddress: string;
     customerId: number;
     productId: number;
-    deliveredDate?: string
+    deliveredDate?: string;
+    shippingStatus: ShippingStatus[];
 }
 
 type Product = {
@@ -55,9 +63,8 @@ export default function OrderPage() {
                 }
             }).catch((error) => console.log(error))
 
-
         }
-    }, [id])
+    }, [id,order])
 
     useEffect(() => {
         useProductStore.getState().getProductById(order?.productId || 0).then((product) => {
@@ -72,6 +79,55 @@ export default function OrderPage() {
             }
         }).catch((error) => console.log(error))
     }, [order])
+
+    const handleAcceptOrder = () => {
+        if (order) {
+            try {
+                order.status = 'On The Way';
+                order.shippingStatus.push({
+                    id: new Date().getTime(),
+                    date: new Date().toISOString(),
+                    status: 'On The Way',
+                    message: 'Order Accepted'
+                })
+                useOrderStore.getState().updateOrder(order).then(() => {
+                    alert('Order Accepted')
+                    setOrder(order)
+                }).catch((error) => {
+                    alert(error)
+                })
+            } catch (error) {
+                alert(error)
+                console.log(error)
+            }
+
+        }
+    }
+
+    const handleCancelOrder = () => {
+        if (order) {
+            try {
+                order.status = 'Rejected';
+                order.shippingStatus.push({
+                    id: new Date().getTime(),
+                    date: new Date().toISOString(),
+                    status: 'Cancelled',
+                    message: 'Order Rejected by the Admin'
+
+                })
+                useOrderStore.getState().updateOrder(order).then(() => {
+                    alert('Order Cancelled')
+                    setOrder(order)
+                }).catch((error) => {
+                    alert(error)
+                })
+            } catch (error) {
+                alert(error)
+                console.log(error)
+            }
+
+        }
+    }
     return (
         <div className="flex w-full h-screen flex-col">
             <TopAppBar title="Order Details" onBackPress={() => {
@@ -124,25 +180,32 @@ export default function OrderPage() {
                 <div className="flex items-center space-y-2 ">
                     <h1>Status : <span className={`py-1 px-4  rounded-3xl text sm ${order?.status === "Delivered" ? "text-green-600 bg-green-600/10" : order?.status === "Pending" ? "text-yellow-600 bg-yellow-600/10" : order?.status === "On The Way" ? "text-blue-600 bg-blue-600/10" : "text-red-600 bg-red-600/10"}`}>{order?.status}</span></h1>
                     {
-                        order?.status === 'Delivered' && <button className="px-4 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs">
+                        order?.status === 'Delivered' && <button className="px-2 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs">
                             Download Invoice
                         </button>
                     }
                 </div>
+
                 {
                     order?.deliveredDate && <h1 className="text-sm text-gray-600">Delivered Date : {order?.deliveredDate}</h1>
                 }
 
-                {
-                    order?.status === 'Pending' && <div className="flex pt-2 ">
-                        <button className="px-4 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs">
-                            Accept Order
-                        </button>
-                        <button className="px-4 py-1 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs ms-4">
-                            Reject Order
-                        </button>
-                    </div>
-                }
+                <div className="flex items-center items-center">
+                    {
+                        order?.status === 'Pending' && <div className="flex pt-2 ">
+                            <button onClick={
+                                handleAcceptOrder
+                            } className="px-4 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs">
+                                Accept Order
+                            </button>
+                            <button onClick={handleCancelOrder} className="px-4 py-1 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs ms-4">
+                                Reject Order
+                            </button>
+                        </div>
+                    }
+                </div>
+
+
             </div>
 
 
@@ -152,36 +215,16 @@ export default function OrderPage() {
             <div className="flex flex-col ms-2 md:ms-4 mt-4 ">
                 <h1 className="mb-2">Sipping Details</h1>
 
-                <div className="text-sm text-gray-600 flex flex-row">
-                    <p className="">Date : {order?.date}</p>
-                    <p className="ms-4">Ordered</p>
+                {
+                    order?.shippingStatus?.map((status) => (
+                        <div className="text-sm text-gray-600 flex flex-row">
+                            <p className="">{status?.date}</p>
+                            <p className="ms-4">{status?.status}</p>
+                            <p className="ms-4">{status?.message || ""}</p>
 
-                </div>
-
-                {/* order accepted */}
-
-                <div className="text-sm text-gray-600 flex flex-row">
-                    <p className="">Date : {order?.date}</p>
-                    <p className="ms-4">Order Accepted</p>
-
-                </div>
-
-                {/* on the way */}
-
-                <div className="text-sm text-gray-600 flex flex-row">
-                    <p className="">Date : {order?.date}</p>
-                    <p className="ms-4">On The Way</p>
-
-                </div>
-
-                {/* delivered */}
-
-                <div className="text-sm text-gray-600 flex flex-row">
-                    <p className="">Date : {order?.date}</p>
-                    <p className="ms-4">Delivered</p>
-
-                </div>
-
+                        </div>
+                    ))
+                }
             </div>
 
 

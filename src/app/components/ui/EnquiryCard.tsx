@@ -30,6 +30,7 @@ const EnquiryCard = ({
                     <p className="text-[10px] text-gray-600">📅{enquiry.date}</p>
                 </div>
             </div>
+                <button className="bg-blue-600 text-white px-4 py-2 rounded-2xl text-xs">View</button>
         </div>
     );
 

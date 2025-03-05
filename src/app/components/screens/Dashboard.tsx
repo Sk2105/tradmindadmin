@@ -126,7 +126,7 @@ function RecentOrder() {
             <h1 className='w-full '>Recent Orders</h1>
 
             {Array.from({ length: 5 }, (_, i) => (
-                <div key={i} className="h-fit w-full rounded-lg items-center flex flex-col md:flex-row justify-between transition-all">
+                <div key={i} className="h-fit w-full hover:bg-green-600/20  p-2 rounded-lg items-center flex flex-col md:flex-row justify-between transition-all">
                     <div className='w-full flex flex-row gap-4  items-center justify-start h-[80px]'>
 
                         <Image
@@ -139,7 +139,7 @@ function RecentOrder() {
 
                         <h3 className=" font-semibold text-[16px]">{"Needle Grinding Machine"}</h3>
                     </div>
-                    <div className='w-full flex flex-row justify-end gap-2   items-center'>
+                    <div className='w-full flex flex-row justify-between gap-2 px-2   items-center'>
 
                         <h1 className='w-fit text-black text-xs'>Qty:1</h1> 
                         <button className='text-center w-fit h-fit bg-blue-600 text-[12px] font-bold hover:bg-blue-700 p-2 rounded-md text-white' >
@@ -164,7 +164,7 @@ function RecentEnquiries() {
             <h1 className='w-full '>Recent Enquiries</h1>
 
             {Array.from({ length: 5 }, (_, i) => (
-                <div key={i} className="h-fit w-full rounded-lg items-center flex justify-between flex-col md:flex-row transition-all">
+                <div key={i} className="h-fit w-full hover:bg-blue-600/20  p-2 rounded-lg items-center flex justify-between flex-col md:flex-row transition-all">
                     <div className='w-full flex flex-row gap-4 items-center h-[80px]'>
 
                         <Image
@@ -177,7 +177,7 @@ function RecentEnquiries() {
 
                         <h3 className=" font-semibold text-[16px]">{"Needle Grinding Machine"}</h3>
                     </div>
-                    <div className='w-full flex flex-row justify-end gap-2  items-center'>
+                    <div className='w-full flex flex-row justify-between gap-2  items-center'>
                         <h1 className='w-fit text-black text-xs'>today</h1>
 
                         <button className='text-center w-fit h-fit bg-blue-600 text-[12px] font-bold hover:bg-blue-700 p-2 rounded-md text-white' >
