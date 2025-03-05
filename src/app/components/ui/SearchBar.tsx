@@ -20,7 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch,title="Search" }: Search
             placeholder={title}
             value={searchTerm}
             onChange={handleSearch}
-            className='rounded-xl p-2 w-full text-[16px] bg-gray-400/20 focus:outline-none focus:ring-1 focus:ring-blue-600'
+            className='rounded-xl px-4 py-2 w-full text-[16px] bg-gray-400/20 focus:outline-none focus:ring-1 focus:ring-blue-600'
         />
         </div>
     );

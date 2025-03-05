@@ -64,8 +64,8 @@ const OrderCard = ({ order }: {
 
     }, [order.customerId])
     return (
-        <div className="flex items-center justify-between p-4 bg-white rounded-md shadow-md mb-4">
-            <div className="flex items-center">
+        <div className="flex items-center flex-col md:flex-row  justify-between p-4 bg-white rounded-md shadow-md hover:shadow-lg mb-4">
+            <div className="w-full flex items-center ">
                 <Image src={product?.image || ""} alt="Logo" width={100} height={100} />
                 <div className="ml-4">
                     <h3 className="text-lg font-semibold">{product?.title}</h3>
@@ -73,9 +73,10 @@ const OrderCard = ({ order }: {
                     <p className="text-sm text-gray-600">Date: {order.date}</p>
                 </div>
             </div>
-            <p className={`text-sm p-1 rounded-xl pl-2 pr-2 text-gray-600 ${order.status === "Pending" ? "text-yellow-500 bg-amber-200/20" : order.status === "Cancelled" ? "text-red-500 bg-red-200/20" : "text-green-500 bg-green-200/20"}`}>{order.status}</p>
-
-            <Link href={`/order/${order.orderId}`} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2  rounded-2xl text-xs ">View Order</Link>
+            <div className="flex items-center justify-end w-full gap-2">
+                <p className={`text-sm p-1 rounded-xl pl-2 pr-2 text-gray-600 ${order.status === "Pending" ? "text-yellow-500 bg-amber-200/20" : order.status === "Cancelled" ? "text-red-500 bg-red-200/20" : "text-green-500 bg-green-200/20"}`}>{order.status}</p>
+                <Link href={`/order/${order.orderId}`} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2  rounded-2xl text-xs ">View Order</Link>
+            </div>
 
         </div>
     );

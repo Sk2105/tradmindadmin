@@ -41,16 +41,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex w-full items-center flex-col justify-center">
-      <div className="w-full max-w-md space-y-8 rounded-xl shadow-lg p-6">
+    <div className="flex w-full h-screen items-center flex-col justify-center">
+      <div className="w-full md:w-1/2 xl:w-1/3 bg-white p-8  rounded-xl shadow-lg m-1">
           <Image src="/logo1.jpg" alt="Logo" width={80} height={80} className="mx-auto" />
-          <h2 className="text-3xl font-bold">Welcome to Admin</h2>
-          <p className="mt-2 text-gray-600">
+          <h2 className="text-2xl text-center font-bold">Welcome to Admin</h2>
+          <p className="mt-1 text-gray-600 text-center">
             Sign in to your account to continue
           </p>
-        </div>
+        
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-6">
           <div>
             <input
               type="email"
@@ -59,7 +59,7 @@ export default function LoginPage() {
               className={`w-full h-fit p-2 border rounded-md focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 ${errors.email ? 'border-red-500' : ''}`}
             />
             {errors.email && (
-              <p className="mt-1 text-sm text-red-500">
+              <p className="text-sm text-red-500">
                 {errors.email.message as string}
               </p>
             )}
@@ -73,7 +73,7 @@ export default function LoginPage() {
               className={`w-full h-fit p-2 border rounded-md focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 ${errors.password ? 'border-red-500' : ''}`}
             />
             {errors.password && (
-              <p className="mt-1 text-sm text-red-500">
+              <p className="text-sm text-red-500">
                 {errors.password.message as string}
               </p>
             )}
@@ -87,7 +87,7 @@ export default function LoginPage() {
             {loading ? 'Loading...' : 'Sign In'}
           </button>
         </form>
-
+        </div>
 
       </div>
   );

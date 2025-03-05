@@ -22,7 +22,7 @@ export default function NavigationBar({ selectedTab, setSelectedTab }: { selecte
                 <Image src="/logo1.jpg" alt="logo" width={30} height={30} />
                 <h1 className="text-2xl ps-2 font-bold text-blue">Tradminds</h1>
             </div>
-            <div className={`h-fit w-fit md:w-full md:h-full bg-white flex-col  md:flex  md:visible p-2 justify-items-start ${state ? 'duration-300 visible w-full' : 'hidden w-0'}`}>
+            <div className={`h-fit w-fit md:w-full md:h-full bg-white flex-col md:flex  md:visible p-2 justify-items-start ${state ? 'duration-300 visible w-full' : 'hidden w-0'}`}>
                 {tabList.map(({ label, value, icon }) => (
                     <TabItem
                         key={value}

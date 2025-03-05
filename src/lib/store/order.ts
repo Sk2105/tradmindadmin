@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 interface Order {
   orderId: number;
@@ -10,6 +9,7 @@ interface Order {
   customerAddress: string;
   customerId: number;
   productId: number;
+  deliveredDate?: string;
 }
 
 interface OrderStore {
@@ -20,11 +20,13 @@ interface OrderStore {
   updateOrder: (order: Order) => void;
   getOrdersByProductId: (id: number) => Promise<Order[]>;
 }
+
 const dummyOrders: Order[] = [
   {
     orderId: 1,
     date: "2023-01-01",
     status: "Delivered",
+    deliveredDate: "2023-01-10",
     totalAmount: 100,
     quantity: 2,
     customerAddress: "123, ABC Street, XYZ City",
@@ -35,6 +37,7 @@ const dummyOrders: Order[] = [
     orderId: 2,
     date: "2023-01-02",
     status: "Delivered",
+    deliveredDate: "2023-01-15",
     totalAmount: 200,
     quantity: 3,
     customerAddress: "456, DEF Street, XYZ City",
@@ -65,6 +68,7 @@ const dummyOrders: Order[] = [
     orderId: 5,
     date: "2023-01-05",
     status: "Delivered",
+    deliveredDate: "2023-01-20",
     totalAmount: 500,
     quantity: 6,
     customerAddress: "112, MNO Street, XYZ City",
@@ -85,6 +89,7 @@ const dummyOrders: Order[] = [
     orderId: 7,
     date: "2023-01-07",
     status: "Delivered",
+    deliveredDate: "2023-01-25",
     totalAmount: 700,
     quantity: 8,
     customerAddress: "141, STU Street, XYZ City",
@@ -115,6 +120,7 @@ const dummyOrders: Order[] = [
     orderId: 10,
     date: "2023-01-10",
     status: "Delivered",
+    deliveredDate: "2023-02-01",
     totalAmount: 1000,
     quantity: 11,
     customerAddress: "171, ABCD Street, XYZ City",
@@ -123,27 +129,17 @@ const dummyOrders: Order[] = [
   },
 ];
 
-const useOrderStore = create<OrderStore>()(
-  persist(
-    (set) => ({
-      orders: dummyOrders,
-      setOrders: (orders: Order[]) => set({ orders }),
-      getOrders: async () => dummyOrders,
-      getOrderById: async (id: number) =>
-        dummyOrders.find((order) => order.orderId === id) || null,
-      updateOrder: (order: Order) =>
-        set({
-          orders: dummyOrders.map((o) =>
-            o.orderId === order.orderId ? order : o
-          ),
-        }),
-      getOrdersByProductId: async (id: number) =>
-        dummyOrders.filter((order) => order.productId === id),
+const useOrderStore = create<OrderStore>((set) => ({
+  orders: dummyOrders,
+  setOrders: (orders: Order[]) => set({ orders }),
+  getOrders: async () => Promise.resolve(dummyOrders),
+  getOrderById: async (id: number) =>
+    dummyOrders.find((order) => order.orderId === id) || null,
+  updateOrder: (order: Order) =>
+    set({
+      orders: dummyOrders.map((o) => (o.orderId === order.orderId ? order : o)),
     }),
-    {
-      name: "order-storage",
-    }
-  )
-);
-
+  getOrdersByProductId: async (id: number) =>
+    Promise.resolve(dummyOrders.filter((order) => order.productId === id)),
+}));
 export default useOrderStore;
