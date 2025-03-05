@@ -7,8 +7,8 @@ import Dashboard from "./components/screens/Dashboard";
 import Products from "./components/screens/Products";
 import Orders from "./components/screens/Orders";
 import Users from "./components/screens/Users";
-import FeedbackPage from "./components/screens/Feeback";
-import { useSearchParams, useRouter } from "next/navigation";
+import FeedbackPage from "./components/screens/Feedback";
+import { useRouter } from "next/navigation";
 
 const screens = [
   { label: TAB.Dashboard, component: <Dashboard key={TAB.Dashboard} /> },
@@ -31,38 +31,45 @@ const screens = [
 ]
 
 
-export default function Home() {
-
+export default function HomePage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const tab = searchParams.get('tab')
-  const curr = (tab && tabList.filter(t => t.label === tab)[0].value) || TAB.Dashboard
-
-  const [selectedTab, setSelectedTab] = useState(curr);
+  // const searchParams = useSearchParams();
+  const [currentTab, setCurrentTab] = useState<TAB>(TAB.Dashboard);
 
 
-  const handleChange = (tab: TAB) => {
-    const labal = tabList.filter(t => t.value === tab)[0].label
-    setSelectedTab(tab);
-    router.push(`?tab=${labal}`);
-  }
+  // useEffect(() => {
+  //   try {
+  //     const tab = searchParams.get('tab');
+  //     const currentTabValue = tab
+  //       ? tabList.find((t) => t.label === tab)?.value
+  //       : TAB.Dashboard;
+  //     setCurrentTab(currentTabValue || TAB.Dashboard);
+  //   } catch (error) {
+  //     console.log(error);
 
+  //   }
 
-
+  //}, [searchParams]);
+  const handleTabChange = (tab: TAB) => {
+    const label = tabList.find((t) => t.value === tab)?.label;
+    setCurrentTab(tab);
+    router.push(`?tab=${label}`);
+  };
 
   return (
+
     <div className="flex flex-col md:flex-row w-full h-full">
       <div className="w-fit md:w-[20vw] h-fit md:h-full top-0">
-
-        <NavigationBar selectedTab={selectedTab} setSelectedTab={handleChange} />
+        <NavigationBar
+          selectedTab={currentTab}
+          setSelectedTab={handleTabChange}
+        />
       </div>
       <div className="w-full md:w-[80vw]">
-
-        {
-          screens.filter((screen) => screen.label === selectedTab).map((screen) => screen.component)
-        }
+        {screens.find((s) => s.label === currentTab)?.component}
       </div>
-
     </div>
+
+
   );
 }

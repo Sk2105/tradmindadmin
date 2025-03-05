@@ -1,3 +1,5 @@
+"use client"
+
 import useFeedbackStore from "@/lib/store/feedback";
 import FeedbackCard from "../ui/FeedbackCard";
 

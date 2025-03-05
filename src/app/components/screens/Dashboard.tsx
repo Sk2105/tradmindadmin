@@ -1,3 +1,4 @@
+"use client"
 import React, { useRef } from 'react';
 import { Toast } from 'primereact/toast';
 import CustomButton from '@/app/components/ui/CustomButton';

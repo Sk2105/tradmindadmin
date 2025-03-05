@@ -1,3 +1,5 @@
+'use client'
+
 import useUsersStore from "@/lib/store/user"
 import UserCard from "../ui/UserCard"
 import { useState } from "react";

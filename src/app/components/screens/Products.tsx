@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import FeaturedProducts from "../ui/ProductCard";
 import SearchBar from "../ui/SearchBar";
