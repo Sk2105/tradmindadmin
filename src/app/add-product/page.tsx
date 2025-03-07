@@ -8,9 +8,11 @@ const AddProduct = () => {
     const [productName, setProductName] = useState("")
     const [productCategory, setProductCategory] = useState("")
     const [productPrice, setProductPrice] = useState(0)
+    const [productDiscountPrice, setProductDiscountPrice] = useState(0)
     const [productImage, setProductImage] = useState<File | null>(null)
     const [productQuantity, setProductQuantity] = useState(0)
     const [productDescription, setProductDescription] = useState("")
+    const [brand, setBrand] = useState("")
 
     const { categories } = useCategoryStore((state) => state)
     const [isUploading, setIsUploading] = useState(false)
@@ -25,6 +27,8 @@ const AddProduct = () => {
             image: productImage,
             quantity: productQuantity,
             description: productDescription,
+            brand: brand,
+            discountPrice: productDiscountPrice
         }
         console.log(product)
     }
@@ -69,11 +73,33 @@ const AddProduct = () => {
                 </div>
 
                 <div className="w-full flex flex-col">
+                    <label className="text-gray-700 text-xs">Product Brand</label>
+                    <input
+                        type="text"
+                        value={brand}
+                        onChange={(e) => setBrand(e.target.value)}
+                        className="w-full border border-gray-300 focus:outline-none focus:border-blue-600 rounded-md p-2 space-y-2 ps-4 text-xs"
+                    />
+                </div>
+
+                <div className="w-full flex flex-col">
                     <label className="text-gray-700 text-xs">Product Price</label>
                     <input
                         type="number"
+                        min={0}
                         value={productPrice}
                         onChange={(e) => setProductPrice(Number(e.target.value))}
+                        className="w-full border border-gray-300 focus:outline-none focus:border-blue-600 rounded-md p-2 space-y-2 ps-4 text-xs"
+                    />
+                </div>
+
+                <div className="w-full flex flex-col">
+                    <label className="text-gray-700 text-xs">Product Discount Price</label>
+                    <input
+                        type="number"
+                        min={0}
+                        value={productDiscountPrice}
+                        onChange={(e) => setProductDiscountPrice(Number(e.target.value))}
                         className="w-full border border-gray-300 focus:outline-none focus:border-blue-600 rounded-md p-2 space-y-2 ps-4 text-xs"
                     />
                 </div>
@@ -92,6 +118,7 @@ const AddProduct = () => {
                     <label className="text-gray-700 text-xs">Product Quantity</label>
                     <input
                         type="number"
+                        min={1}
                         value={productQuantity}
                         onChange={(e) => setProductQuantity(Number(e.target.value))}
                         className="w-full border border-gray-300 focus:outline-none focus:border-blue-600 rounded-md p-2 space-y-2 ps-4 text-xs"

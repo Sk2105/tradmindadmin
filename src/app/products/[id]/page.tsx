@@ -8,10 +8,10 @@ import useOrderStore from '@/lib/store/order';
 import useProductStore from '@/lib/store/product';
 import useReviewStore from '@/lib/store/reviews';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { LuPen } from 'react-icons/lu';
-import { MdOutlineDelete } from 'react-icons/md';
 
 type Product = {
   id: number;
@@ -21,6 +21,8 @@ type Product = {
   category: string;
   stock: number;
   image: string;
+  brand?: string | "Tradminds";
+  discountPrice?: number | 15000.0
 
 }
 
@@ -142,136 +144,114 @@ export default function ProductPage() {
               className="w-full h-96 object-fill"
             />
           </div>
-          <div className="space-y-6">
-            <div className='flex items-center justify-between'>
-              <h1 className="text-2xl text-gray-900">{product?.title}</h1>
-              <button onClick={
-                () => { }
-              } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
-                <LuPen />
-              </button>
-            </div>
+          <div>
+            <h1 className="text-2xl text-gray-900">{product?.title}</h1>
 
-            <div className='flex items-center'>
-              <p className="text-[10px] text-gray-500">Description</p>
-              <button onClick={
-                () => { }
-              } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
-                <LuPen />
-              </button>
-            </div>
-
-            <p className="text-sm text-gray-500">{product?.description.substring(0, 200)}...</p>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-
-                <div className='flex items-center space-x-4'>
-                  <p className="text-3xl font-bold text-orange-600">
-                    ₹{product?.price.toFixed(2)}
-                  </p>
-                  <button onClick={
-                    () => { }
-                  } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
-                    <LuPen />
-                  </button>
-                </div>
+            <p className='text-[16px] text-gray-500 mt-4'>Brand : {product?.brand || "Tradminds"}</p>
+            <p className="text-[10px] text-gray-500 mt-4">Description</p>
 
 
-                <p className="text-sm text-gray-500">Ex. Factory Price</p>
+            <p className="text-sm text-gray-500">{product?.description}</p>
+            <div className="flex items-center justify-between mt-4">
 
+
+              <div className='flex flex-row items-center '>
+
+                <p className="text-3xl font-bold text-blue-600">₹{product?.discountPrice || ((product?.price ?? 0) / 2.0)}</p>
+                <p className="ms-2 text-xl font-bold text-gray-400 line-through">
+                  ₹{product?.price.toFixed(2)}
+                </p>
               </div>
+
+              <p className="text-sm text-gray-500">Ex. Factory Price</p>
+
             </div>
 
-            <div className='flex items-center'>
+
+            <div className='flex flex-row space-y-4 mt-4'>
+
               <p className="text-sm text-gray-500">Quantity : </p>
-              <p className='text-sm text-gray-600 py-2'>{product?.stock}</p>
-              <button onClick={
-                () => { }
-              } className=' text-lg px-2 py-2 hover:bg-gray-600/10 rounded-full focus:outline-none'>
-                <LuPen />
-              </button>
-
-
-
-
+              <p className='text-sm text-gray-600'>{product?.stock}</p>
 
             </div>
 
             <div className='grid grid-cols-2 gap-2'>
-              
-            <button onClick={
-              () => { }
-            } className=' text-sm px-2 py-2 hover:bg-green-600/10 border border-green-600 text-green-600 rounded-full justify-center items-center flex focus:outline-none'>
-              <LuPen />
-              <span className='pl-2'>change image</span>
-            </button>
-            
-            <button onClick={
-              () => { }
-            } className=' text-sm px-2 py-2 hover:bg-red-600/10 border border-red-600 text-red-600 rounded-full justify-center items-center flex focus:outline-none'>
-              <MdOutlineDelete />
-              <span className='pl-2'>Delete Product</span>
-            </button>
+
+              <button onClick={
+                () => { }
+              } className=' text-sm px-2 py-2 hover:bg-green-600/10 border border-green-600 text-green-600 rounded-full justify-center items-center flex focus:outline-none'>
+                <LuPen />
+                <span className='pl-2'>change image</span>
+              </button>
+
+              <Link href={`/edit-product/${product?.id}`} onClick={
+                () => { }
+              } className=' text-sm px-2 py-2 hover:bg-blue-700 border bg-blue-600 text-white rounded-full justify-center items-center flex focus:outline-none'>
+                <LuPen />
+                <span className='pl-2'>Edit Product</span>
+              </Link>
             </div>
           </div>
-        </div>
-
-
-        {
-          <div className='w-full flex justify-start items-center space-x-4'>
-            {
-              tabs.map((t) => (
-                <button key={t} onClick={() => handleTabClick(t)} className={`px-4 py-2  ${tab === t ? 'border-b-2 border-blue-600 text-blue-600' : 'text-gray-500'}`}>
-                  {t}
-                </button>
-              ))
-            }
-
-          </div>
-        }
-
-        <div className='w-full p-2'>
-          {
-            tab === "Orders" && (
-              order?.length ? (
-                order.map((o) =>
-                  <OrderCard key={o.orderId} order={o} />)
-              ) : <div className="p-2">No Orders</div>
-            )
-          }
-
-          <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-
-            {
-              tab === "Enquiries" && (
-                enquiries?.length ? (
-                  enquiries.map((e) =>
-                    <EnquiryCard key={e.id} enquiry={e} />
-                  )
-                ) : <div className="p-2">No Enquiries</div>
-              )
-            }
-          </div>
-
-
-
-          <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-
-            {
-              tab === "Reviews" && (
-                reviews?.length ? (
-                  reviews.map((r) =>
-                    <ReviewCard key={r.id} review={r} />
-                  )
-                ) : <div className="p-2">No Reviews</div>
-              )
-            }
-          </div>
-
 
         </div>
 
       </div>
-    </div >
+
+
+      {
+        <div className='w-full ms-4 flex justify-start items-center space-x-4'>
+          {
+            tabs.map((t) => (
+              <button key={t} onClick={() => handleTabClick(t)} className={`px-4 py-2  ${tab === t ? 'border-b-2  border-blue-600 text-blue-600' : 'text-gray-500 hover:text-blue-600'}`}>
+                {t}
+              </button>
+            ))
+          }
+
+        </div>
+      }
+
+      <div className='w-full p-2'>
+        {
+          tab === "Orders" && (
+            order?.length ? (
+              order.map((o) =>
+                <OrderCard key={o.orderId} order={o} />)
+            ) : <div className="p-2">No Orders</div>
+          )
+        }
+
+        <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+
+          {
+            tab === "Enquiries" && (
+              enquiries?.length ? (
+                enquiries.map((e) =>
+                  <EnquiryCard key={e.id} enquiry={e} />
+                )
+              ) : <div className="p-2">No Enquiries</div>
+            )
+          }
+        </div>
+
+
+
+        <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
+
+          {
+            tab === "Reviews" && (
+              reviews?.length ? (
+                reviews.map((r) =>
+                  <ReviewCard key={r.id} review={r} />
+                )
+              ) : <div className="p-2">No Reviews</div>
+            )
+          }
+        </div>
+
+
+      </div>
+
+    </div>
   );
 }
